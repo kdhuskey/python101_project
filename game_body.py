@@ -1,23 +1,25 @@
 import random
 from welcome_msg import cliff_hang
-from end_game_q import end_game_q
-# import os
-# system.os('clear')
+from end_of_game_q import end_game_q
+import os
+
 # import time from console_progressbar 
 # import ProgressBar
 
 import time 
 from progress import pb
-
+space_divider = """ """
 def step_1(step_up, item_name, item_price):
 
     while True:
         try:
+            print(space_divider)
             user_select_1 = int(input(f'What is the price for {item_name}'))
+            print(space_divider)
         except:
             print('That is not a number!')
             continue
-        if user_select_1 not in range(1, 500):
+        if user_select_1 not in range(0, 700):
             print('invalid selection!')                 ####################### 
             continue
         if user_select_1 == item_price:
@@ -28,16 +30,20 @@ def step_1(step_up, item_name, item_price):
                 diff_1 = user_select_1 - item_price
                 step_up += diff_1
                 print(f'Incorrect guess for {item_name}Actual price is ${item_price}')
+                print(space_divider)
             elif user_select_1 < item_price:
                 diff_2 = item_price - user_select_1
                 step_up += diff_2
                 print(f'Incorrect guess for {item_name}Actual price is ${item_price}')
+                print(space_divider)
             break
     if step_up != 0:
+        print(space_divider)
         print(f'Yodely Guy is on step {step_up}!!')
         pb.print_progress_bar(step_up)
-        print(' ')
-    if step_up >= 25:
+        print(space_divider)
+        print(space_divider)
+    if step_up > 25:
         print('Sorry, Yodely guy fell off!! You lose. :(')
     return step_up
 
@@ -46,15 +52,14 @@ def step_1(step_up, item_name, item_price):
 def game_body():
     
 
-    item_1_price = random.randint(1, 5)
-    item_2_price = random.randint(1, 15)
-    item_3_price = random.randint(1, 10)
-    item_1 = ['Coffee: ', item_1_price]
-    item_2 = ['Steak: ', item_2_price]
-    item_3 = ['Beer: ' , item_3_price]
+    item_1_price = random.randint(1, 10)
+    item_2_price = random.randint(15, 35)
+    item_3_price = random.randint(10, 25)
+    item_1 = ['Cup of Coffee: ', item_1_price]
+    item_2 = ['PorterHouse - Steak: ', item_2_price]
+    item_3 = ['Yeti Cup: ' , item_3_price]
 
-    print("""
-    What would you like to do? Please select (1-4)""")
+    print('Which item would you like to guess the price? Please select (1-4)')
     step_up = 0
 
     item_1_guessed = False
@@ -65,15 +70,19 @@ def game_body():
         if item_1_guessed and item_2_guessed and item_3_guessed:
             
             if step_up <= 25:
-                gam_q = input('Congratulations!! You win and you also win the bonus prize of a bottle of whiskey! The only catch is you have to guess within 5 dollars of how much it cost. If you loose then you do not win anything. Want to continue? Type "yes" or "no" ')
+                gam_q = input("""Congratulations!!\nYou win and you also win the bonus prize of a bottle of whiskey!\nThe only catch is you have to guess within 5 dollars of how much it cost.\nIf you loose then you do not win anything.\nWant to continue? Type yes or no """)
+                print(space_divider)
                 if gam_q == 'yes':
                     end_game_q()
+                    break
                 elif gam_q == 'no':
                     print('Ok cool, you win the 3 prizes')
-            if step_up < 25:
-                    print("""You win!!!! \nGame is over and will exit. \nIf you wish to play again, select play again.""")
-            elif step_up > 25:
-                print('Sorry, Yodely guy fell off!! You lose. :(') 
+                    print("""Game is over and will exit. \nIf you wish to play again, select play again.""")
+                    break
+            # if step_up < 25:
+            #         print("""You win!!!! \nGame is over and will exit. \nIf you wish to play again, select play again.""")  ######
+        if step_up > 25:
+            # print('Sorry, Yodely guy fell off!! You lose. :(') 
             break
 
         if item_1_guessed == False:

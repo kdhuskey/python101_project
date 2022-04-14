@@ -1,4 +1,6 @@
+import os
 def cliff_hang():
+    os.system('clear')
     print("""
  _    _      _                            _          _____ _ _  __  __   _   _                                 _ _ 
 | |  | |    | |                          | |        /  __ \ (_)/ _|/ _| | | | |                               | | |
