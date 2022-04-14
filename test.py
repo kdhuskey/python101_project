@@ -20,7 +20,7 @@ print("""<<< ~ Welcome to Cliff Hangers!! ~ >>>
 What would you like to do? Please select (1-4)""")
 step_up = 0
 max_steps = 25
-while step_up < max_steps:
+while True:
 
 
     user_select = int(input(f"""
@@ -28,8 +28,7 @@ while step_up < max_steps:
 2. Guess on {item_2[0]}
 3. Guess on {item_3[0]}
 4. To quit the game \nSelection: """))
-    step_up = 0
-    max_step = 25
+    
 
     if user_select == 1:
         user_select_1 = int(input(f'What is the price for {item_1[0]}'))
